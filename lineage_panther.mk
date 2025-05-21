@@ -9,8 +9,8 @@ TARGET_DISABLE_EPPE := true
 $(call inherit-product, vendor/lineage/config/common_full_phone.mk)
 
 # Inherit device configuration
-DEVICE_CODENAME := panther
-DEVICE_PATH := device/google/pantah
+DEVICE_CODENAME := bluejay
+DEVICE_PATH := device/google/panther
 VENDOR_PATH := vendor/google/panther
 $(call inherit-product, $(DEVICE_PATH)/aosp_$(DEVICE_CODENAME).mk)
 $(call inherit-product, device/google/gs201/lineage_common.mk)
@@ -21,13 +21,40 @@ PRODUCT_BRAND := google
 PRODUCT_MODEL := Pixel 7
 PRODUCT_NAME := lineage_$(DEVICE_CODENAME)
 
+# Addons
+TARGET_HAS_UDFPS := true
+
+# Gms 
+WITH_GMS := true
+
+# Ship Pixel Launcher
+TARGET_DEFAULT_PIXEL_LAUNCHER := true
+
+# Ship Google Camera
+TARGET_PREBUILT_GOOGLE_CAMERA := true
+
+# Lawnchair Prebuilt
+TARGET_PREBUILT_LAWNCHAIR_LAUNCHER := true
+
+# disable/enable blur support, default is false
+TARGET_ENABLE_BLUR := true
+
+RISING_MAINTAINER=Metroid
+    
+# Use Scudo instead of Jemalloc
+PRODUCT_USE_SCUDO := true
+PRODUCT_USE_SCUDO_32_BIT := true
+
+# Support Face Unlock
+TARGET_FACE_UNLOCK_SUPPORTED := true
+
 # Boot animation
 TARGET_SCREEN_HEIGHT := 2400
 TARGET_SCREEN_WIDTH := 1080
 
 PRODUCT_BUILD_PROP_OVERRIDES += \
-    BuildDesc="panther-user 15 BP1A.250505.005.B1 13277630 release-keys" \
-    BuildFingerprint=google/panther/panther:15/BP1A.250505.005.B1/13277630:user/release-keys \
+    BuildDesc="panther-user 15 BP1A.250505.005 13277524 release-keys" \
+    BuildFingerprint=google/panther/panther:15/BP1A.250505.005/13277524:user/release-keys \
     DeviceProduct=$(DEVICE_CODENAME)
 
 $(call inherit-product, $(VENDOR_PATH)/$(DEVICE_CODENAME)-vendor.mk)
